@@ -1,0 +1,138 @@
+/* ===== 調整用 変数 ===== */
+:root {
+  /* 要素の横幅比率 */
+  --clock-w-ratio: 0.48;     /* 時計の横幅比 (48%) */
+  --spacer-ratio: 0.085;    /* 間の比率 (8.5%) */
+  --calendar-w-ratio: 0.435; /* カレンダー横幅比 (43.5%) */
+
+  /* レイアウト・デザイン微調整 */
+  --calendar-h-ratio: 0.92; /* カレンダー高さ = 時計高さの92% */
+  --day-gap: 0.5vmin;      /* 日付マスの行間・列間 */
+  --month-font: 8cqw;   /* 月（例：8月）の文字サイズ */
+  --cell-font: 6.5cqw;    /* 曜日＆日付の文字サイズ */
+}
+
+/* ===== 全体のレイアウト ===== */
+body {
+  margin: 0;
+  height: 100vh;
+  background: #000;
+  color: #fff;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  
+  /* コンテナを画面中央に配置 */
+  display: grid;
+  place-items: center;
+  overflow: hidden; /* スクロールバーを非表示 */
+}
+
+.container {
+  /* 基本サイズを定義 (縦80%, 横90%) */
+  width: 90vw;
+  height: 80vh;
+
+  /* アスペクト比を維持するための設定 */
+  /* 横長画面で幅が広がりすぎないように制限 */
+  max-width: calc(80vh * 50 / 27);
+  /* 縦長画面で高さが高くなりすぎないように制限 */
+  max-height: calc(90vw * 27 / 50);
+
+  display: flex;
+  align-items: center;
+
+  /* カレンダーの高さ計算のためにコンテナクエリを有効化 */
+  container-type: inline-size;
+}
+
+/* ===== 時計（左） ===== */
+.clock {
+  position: relative;
+  flex: 0 0 calc(100% * var(--clock-w-ratio));
+  aspect-ratio: 1 / 1; /* 常に正方形を維持 */
+  background: url('clock-face.png') center / contain no-repeat;
+}
+
+/* 針の共通設定 */
+.hand {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* 針画像の回転の中心を中央に設定 */
+  transform-origin: center center;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  /* 文字盤と針の比率（46.4 : 53.6）を計算 */
+  width: calc(100% * 53.6 / 46.4);
+}
+.hand img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ===== 間 ===== */
+.spacer {
+  flex: 0 0 calc(100% * var(--spacer-ratio));
+}
+
+/* ===== カレンダー（右） ===== */
+.calendar {
+  flex: 0 0 calc(100% * var(--calendar-w-ratio));
+  /* 時計の高さ（=コンテナ幅 * 時計の比率）を基準に高さを計算 */
+  height: calc((100cqw * var(--clock-w-ratio)) * var(--calendar-h-ratio));
+  
+  /* カレンダー内部の要素を縦中央揃えにする */
+  display: grid;
+  align-content: center;
+
+  container-type: inline-size;
+  container-name: calendar; 
+}
+
+/* 月名（例：8月） */
+.calendar .month {
+  font-size: var(--month-font);
+  margin-bottom: calc(var(--day-gap) * 5);
+  text-align: left;
+  padding-left: 1.5vmin;
+}
+
+/* 曜日（行） */
+.calendar .weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 2vmin;
+}
+.calendar .weekdays div {
+  font-size: var(--cell-font);
+  text-align: center;
+}
+
+/* 日付（グリッド） */
+.calendar .days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--day-gap);
+}
+.calendar .days div {
+  font-size: var(--cell-font);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1 / 1; /* 正円を維持 */
+  border-radius: 50%;
+}
+
+/* 土日・今日・文字スタイルの設定 */
+.calendar .sat { color: #999; }
+.calendar .sun { color: #999; }
+.calendar .today {
+  background: #fff;
+  color: #000 !important;
+}
+.month-kanji, .weekday-kanji {
+  font-weight: 700;
+}
+.two-digit {
+  letter-spacing: 0.02em;
+}
