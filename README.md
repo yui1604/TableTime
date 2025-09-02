@@ -14,6 +14,6 @@
 リポジトリをクローンして、`index.html` をブラウザで開くだけで利用できます。
 
 ```bash
-git clone https://github.com/username/TableTime.git
+git clone https://github.com/yui1604/TableTime.git
 cd TableTime
 open index.html
