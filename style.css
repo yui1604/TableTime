@@ -20,18 +20,17 @@ html, body {
 }
 
 body {
-  height: 100dvh;
   background: #000;
   color: #fff;
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-  
-  /* コンテナを画面中央に配置 */
-  display: grid;
-  place-items: center;
   overflow: hidden; /* スクロールバーを非表示 */
 }
 
 .container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   /* 基本サイズを定義 (縦80%, 横90%) */
   width: 90vw;
   height: 80vh;
@@ -138,3 +137,4 @@ body {
 .two-digit {
   letter-spacing: 0.02em;
 }
+
