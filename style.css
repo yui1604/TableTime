@@ -13,9 +13,14 @@
 }
 
 /* ===== 全体のレイアウト ===== */
-body {
+html, body {
+  /* height: 100%; この行は削除またはコメントアウト */
   margin: 0;
-  height: 100vh;
+  padding: 0;
+}
+
+body {
+  height: 100dvh;
   background: #000;
   color: #fff;
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
