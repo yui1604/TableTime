@@ -8,8 +8,8 @@
   /* レイアウト・デザイン微調整 */
   --calendar-h-ratio: 0.92; /* カレンダー高さ = 時計高さの92% */
   --day-gap: 0.5vmin;      /* 日付マスの行間・列間 */
-  --month-font: 8cqw;   /* 月（例：8月）の文字サイズ */
-  --cell-font: 6.5cqw;    /* 曜日＆日付の文字サイズ */
+  --month-font: 3.5vmin;   /* 月（例：8月）の文字サイズ */
+  --cell-font: 2.8vmin;    /* 曜日＆日付の文字サイズ */
 }
 
 /* ===== 全体のレイアウト ===== */
@@ -84,9 +84,6 @@ body {
   /* カレンダー内部の要素を縦中央揃えにする */
   display: grid;
   align-content: center;
-
-  container-type: inline-size;
-  container-name: calendar; 
 }
 
 /* 月名（例：8月） */
@@ -94,7 +91,7 @@ body {
   font-size: var(--month-font);
   margin-bottom: calc(var(--day-gap) * 5);
   text-align: left;
-  padding-left: 1.5vmin;
+  padding-left: 1.2vmin;
 }
 
 /* 曜日（行） */
