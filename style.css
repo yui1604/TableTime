@@ -1,29 +1,29 @@
 /* ===== 調整用 変数 ===== */
 :root {
   /* 要素の横幅比率 */
-  --clock-w-ratio: 0.48;     /* 時計の横幅比 (48%) */
-  --spacer-ratio: 0.085;    /* 間の比率 (8.5%) */
-  --calendar-w-ratio: 0.435; /* カレンダー横幅比 (43.5%) */
+  --clock-w-ratio: 0.48;
+  --spacer-ratio: 0.085;
+  --calendar-w-ratio: 0.435;
 
   /* レイアウト・デザイン微調整 */
-  --calendar-h-ratio: 0.92; /* カレンダー高さ = 時計高さの92% */
-  --day-gap: 0.5vmin;      /* 日付マスの行間・列間 */
-  --month-font: 3.5vmin;   /* 月（例：8月）の文字サイズ */
-  --cell-font: 2.8vmin;    /* 曜日＆日付の文字サイズ */
+  --calendar-h-ratio: 0.92;
+  --day-gap: 0.5vmin;
+  --month-font: 7.5cqh; /* 単位をcqhに変更 */
+  --cell-font: 6cqh;   /* 単位をcqhに変更 */
 }
 
 /* ===== 全体のレイアウト ===== */
 html, body {
-  /* height: 100%; この行は削除またはコメントアウト */
   margin: 0;
   padding: 0;
 }
 
 body {
+  height: 100dvh;
   background: #000;
   color: #fff;
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-  overflow: hidden; /* スクロールバーを非表示 */
+  overflow: hidden;
 }
 
 .container {
@@ -31,20 +31,12 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* 基本サイズを定義 (縦80%, 横90%) */
   width: 90vw;
   height: 80vh;
-
-  /* アスペクト比を維持するための設定 */
-  /* 横長画面で幅が広がりすぎないように制限 */
   max-width: calc(80vh * 50 / 27);
-  /* 縦長画面で高さが高くなりすぎないように制限 */
   max-height: calc(90vw * 27 / 50);
-
   display: flex;
   align-items: center;
-
-  /* カレンダーの高さ計算のためにコンテナクエリを有効化 */
   container-type: inline-size;
 }
 
@@ -52,7 +44,7 @@ body {
 .clock {
   position: relative;
   flex: 0 0 calc(100% * var(--clock-w-ratio));
-  aspect-ratio: 1 / 1; /* 常に正方形を維持 */
+  aspect-ratio: 1 / 1;
   background: url('clock-face.png') center / contain no-repeat;
 }
 
@@ -61,11 +53,9 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  /* 針画像の回転の中心を中央に設定 */
   transform-origin: center center;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  /* 文字盤と針の比率（46.4 : 53.6）を計算 */
   width: calc(100% * 53.6 / 46.4);
 }
 .hand img {
@@ -82,12 +72,13 @@ body {
 /* ===== カレンダー（右） ===== */
 .calendar {
   flex: 0 0 calc(100% * var(--calendar-w-ratio));
-  /* 時計の高さ（=コンテナ幅 * 時計の比率）を基準に高さを計算 */
   height: calc((100cqw * var(--clock-w-ratio)) * var(--calendar-h-ratio));
-  
-  /* カレンダー内部の要素を縦中央揃えにする */
   display: grid;
   align-content: center;
+
+  /* ↓ 以下の2行を追記 */
+  container-type: size;
+  container-name: calendar;
 }
 
 /* 月名（例：8月） */
@@ -120,7 +111,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  aspect-ratio: 1 / 1; /* 正円を維持 */
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
 }
 
@@ -137,4 +128,3 @@ body {
 .two-digit {
   letter-spacing: 0.02em;
 }
-
