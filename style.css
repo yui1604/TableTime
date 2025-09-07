@@ -31,10 +31,10 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 90vw;
-  height: 80vh;
-  max-width: calc(80vh * 50 / 27);
-  max-height: calc(90vw * 27 / 50);
+  width: 96vw;
+  height: 94vh;
+  max-width: calc(95vh * 50 / 27);
+  max-height: calc(95vw * 27 / 50);
   display: flex;
   align-items: center;
   container-type: inline-size;
@@ -128,4 +128,5 @@ body {
 .two-digit {
   letter-spacing: 0.02em;
 }
+
 
