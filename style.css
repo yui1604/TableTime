@@ -8,8 +8,8 @@
   /* レイアウト・デザイン微調整 */
   --calendar-h-ratio: 0.92;
   --day-gap: 0.5vmin;
-  --month-font: 7.5cqh; /* 単位をcqhに変更 */
-  --cell-font: 6cqh;   /* 単位をcqhに変更 */
+  --month-font: 7.8cqh; /* 単位をcqhに変更 */
+  --cell-font: 6.5cqh;   /* 単位をcqhに変更 */
 }
 
 /* ===== 全体のレイアウト ===== */
@@ -128,3 +128,4 @@ body {
 .two-digit {
   letter-spacing: 0.02em;
 }
+
