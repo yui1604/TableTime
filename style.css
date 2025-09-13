@@ -1,0 +1,151 @@
+/* ===== 調整用 変数 ===== */
+:root {
+  /* 要素の横幅比率 */
+  --clock-w-ratio: 0.48;
+  --spacer-ratio: 0.085;
+  --calendar-w-ratio: 0.435;
+
+  /* レイアウト・デザイン微調整 */
+  --calendar-h-ratio: 0.92;
+  --day-gap: 0.5vmin;
+  --month-font: 7.5cqh;
+  --cell-font: 6cqh;
+}
+
+/* ===== 全体のレイアウト ===== */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100dvh;
+  background: #000;
+  color: #fff;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 96vw;
+  height: 94vh;
+  max-width: calc(100vh * 50 / 27);
+  max-height: calc(100vw * 27 / 50);
+  display: flex;
+  align-items: center;
+  container-type: inline-size;
+}
+
+/* ===== 時計（左） ===== */
+.clock {
+  position: relative;
+  flex: 0 0 calc(100% * var(--clock-w-ratio));
+  aspect-ratio: 1 / 1;
+  background: url('assets/day/clock-face.png') center / contain no-repeat;
+}
+
+/* 針の共通設定 */
+.hand {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center center;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  width: calc(100% * 53.6 / 46.4);
+}
+.hand img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ===== 間 ===== */
+.spacer {
+  flex: 0 0 calc(100% * var(--spacer-ratio));
+}
+
+/* ===== カレンダー（右） ===== */
+.calendar {
+  flex: 0 0 calc(100% * var(--calendar-w-ratio));
+  height: calc((100cqw * var(--clock-w-ratio)) * var(--calendar-h-ratio));
+  display: grid;
+  align-content: center;
+  container-type: size;
+  container-name: calendar;
+}
+
+/* 月名（例：8月） */
+.calendar .month {
+  font-size: var(--month-font);
+  margin-bottom: calc(var(--day-gap) * 5);
+  text-align: left;
+  padding-left: 1.2vmin;
+}
+
+/* 曜日（行） */
+.calendar .weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 2vmin;
+}
+.calendar .weekdays div {
+  font-size: var(--cell-font);
+  text-align: center;
+}
+
+/* 日付（グリッド） */
+.calendar .days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--day-gap);
+}
+.calendar .days div {
+  font-size: var(--cell-font);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+}
+
+/* 土日・今日・文字スタイルの設定 */
+.calendar .sat { color: #999; }
+.calendar .sun { color: #999; }
+.calendar .today {
+  background: #fff;
+  color: #000 !important;
+}
+.month-kanji, .weekday-kanji {
+  font-weight: 700;
+}
+.two-digit {
+  letter-spacing: 0.02em;
+}
+
+/* ===== ナイトモード ===== */
+.night-mode {
+  /* カレンダーの基本文字色（月・曜日・平日） */
+  color: #ff0000;
+}
+
+/* 文字盤 */
+.night-mode .clock {
+  background-image: url('assets/night/clock-face.png');
+}
+
+/* カレンダーの土日 */
+.night-mode .calendar .sat,
+.night-mode .calendar .sun {
+  color: #860000;
+}
+
+/* 今日の日付のハイライト */
+.night-mode .calendar .today {
+  background: #ff0000;
+  color: #000 !important;
+}
